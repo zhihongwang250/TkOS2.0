@@ -21,5 +21,6 @@ pip install pygame
 新增开始菜单
 对计算器进行优化
 游戏更加完善
+新增tkvision文本阅读器
 </pre>
 # 本作品还会持续更新！
