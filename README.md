@@ -23,4 +23,5 @@ pip install pygame
 游戏更加完善
 新增tkvision文本阅读器
 </pre>
+#### 本版本附加事项：my_docc.txt是自定义编辑文件的文件
 # 本作品还会持续更新！
