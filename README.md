@@ -24,4 +24,5 @@ pip install pygame
 新增tkvision文本阅读器
 </pre>
 #### 本版本附加事项：my_doc.txt是自定义编辑文件的文件
+#### 因为为了上传，所以my_doc.txt里有文字，您可以在下载后把文字去掉
 # 本作品还会持续更新！
