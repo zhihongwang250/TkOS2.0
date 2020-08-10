@@ -255,6 +255,8 @@ def gameing():
     ran=random.randrange(15)
     for i in range(6):
         ans=simpledialog.askstring('猜数字游戏','请猜一个1到15的数字：')
+        if not ans:
+            return
         if ans==ran:
             tkmessagebox.showinfo('猜数字游戏','恭喜你，猜对了！游戏结束！')
             break
