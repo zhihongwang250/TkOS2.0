@@ -25,9 +25,10 @@ pip install pygame
 </pre>
 #### 2.1.3
 <pre>
+对文档编辑进行了更新，使其更人性化
 编辑文档增加可编辑Python文档并运行(在cmd里运行）
 新增学生版，增加学生版内容
-保留旧版（旧版专有储存库）网址https://github.com/zhihongwang250/old_file_repostitory
+保留旧版
 </pre>
 #### 本版本附加事项：my_doc.txt是自定义编辑文件的文件
 #### 因为为了上传，所以my_doc.txt里有文字，您可以在下载后把文字去掉
