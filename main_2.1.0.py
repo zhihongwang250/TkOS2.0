@@ -5,7 +5,7 @@ from tkinter import Tk
 from tkinter import Label as label
 from tkinter import Button as Button
 from tkinter import Menu as menu
-from tkinter import Canvas,HIDDEN,NORMAL,INSERT,END
+from tkinter import Canvas,HIDDEN,NORMAL
 import tkinter.font as tkFont
 from tkinter import Text
 from pygame import mixer
@@ -14,7 +14,6 @@ import sys
 import os
 import random
 import webbrowser
-import runpy
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # 使用说明的文字
@@ -33,35 +32,6 @@ three3='2.对TkOS的声明：我们的TkOS TKVISION文本阅读器并非在所�
 four4='3.TkOS的版本更新：TkOS更新时，会在聊天区提示，您可以到TkOS2.0官网去下载\n'
 five5='4.版权声明：TkOS1.0 2.0 作者：zhihongwang250，保留一切权利！\n如您要根据TkOS进行改编时，请在作品建议栏提示！\n\n'
 six6='感谢您选择TkOS，请仔细阅读说明'
-
-def test1():
-    return1=os.system('ping 8.8.8.8')
-    if return1:
-        print('未连接')
-        os.system('msdt.exe /id NetworkDiagnosticsNetworkAdapter')#调用系统网络诊断
-    else:
-        print('连接')
-
-def test2():
-    import subprocess
- 
-    fnull = open(os.devnull, 'w')
-    return1 = subprocess.call('ping 8.8.8.8', shell = True, stdout = fnull, stderr = fnull)
-    if return1:
-        return1 = subprocess.call('msdt.exe /id NetworkDiagnosticsNetworkAdapter', shell=True, stdout=fnull, stderr=fnull)
-        print('\n未连接')
-        print('未联机，您无法访问聊天区，进行网络操作')
-    else:
-        print('\n连接')
-        print('已连接，您可以访问网络服务')
-        fnull.close()
-    print('python终端文件已就绪')
-    print('Python文件编辑不能有中文，如需要中文，请打开源代码文件')
-    sleep(3)
-    print('pyshell准备就绪......')
-    sleep(6)
-    print('准备启动......')
-    sleep(3)
 
 def tianqi():
     sf=tkmessagebox.askyesno('提示','我们即将打开天气预报，请在主页选择您的城市并查看，点击否停止')
@@ -176,33 +146,13 @@ def bang():
     bang.mainloop()
 
 def doc_file():
-    import hashlib
-    wenjian = Tk()
-    wenjian.title('tkvision文本阅读器：编辑文档')
-    text = Text(wenjian,width=50, height=10)
-    text.pack()
-    file=open('my_doc.txt')
-    s=file.read()
-    text.insert(INSERT, s)
-    contents = text.get('1.0', END)
-    def getSig(contents):
-        m = hashlib.md5(contents.encode())
-        return m.digest()
-    sig = getSig(contents)
-    def check():
-        contents = text.get('1.0', END)
-        if sig != getSig(contents):
-            yn=tkmessagebox.askyesno('提示','内容有修改，是否保存？')
-            if yn==True:
-                filekong1=open('my_doc.txt', "r+")
-                filekong1.truncate()
-                filekong1=open('my_doc.txt', "a")
-                filekong1.write(contents)
-                tkmessagebox.showinfo('提示','保存成功！')
-        else:
-            tkmessagebox.showinfo('提示','无修改！')
-    Button(wenjian, text='检查', command=check).pack()
-    wenjian.mainloop()
+    word=simpledialog.askstring('我的文档.txt：编辑','请输入您要编辑的内容：')
+    if not word:
+        return
+    else:
+        with open('my_doc.txt','a') as file:
+            file.write('\n'+word)
+            tkmessagebox.showinfo('提示','文件已成功保存！')
 
 def look_file():
     file_gui=Tk()
@@ -219,54 +169,6 @@ def kong_file():
     filekong=open('my_doc.txt', "r+")
     filekong.truncate()
     tkmessagebox.showinfo('提示','文件已成功清空！')
-
-def open_file():
-    os.system('my_script.py')
-
-def pyshell():
-    print('====================')
-    print('     pyshell')
-    print('====================')
-    print(os.system('python'))
-
-def python_file():
-    import hashlib
-    wenjian2 = Tk()
-    wenjian2.title('tkvision python阅读器：编辑文档')
-    text = Text(wenjian2,width=50, height=10)
-    text.pack()
-    file=open('my_script.py')
-    s=file.read()
-    text.insert(INSERT, s)
-    contents = text.get('1.0', END)
-    def getSig(contents):
-        m = hashlib.md5(contents.encode())
-        return m.digest()
-    sig = getSig(contents)
-    def check():
-        contents = text.get('1.0', END)
-        if sig != getSig(contents):
-            yn=tkmessagebox.askyesno('提示','现在保存吗？')
-            if yn==True:
-                filekong12=open('my_script.py', "r+")
-                filekong12.truncate()
-                filekong12=open('my_script.py', "a")
-                filekong12.write(contents)
-                tkmessagebox.showinfo('提示','保存成功！')
-            else:
-                return
-        else:
-            tkmessagebox.showinfo('提示','无修改！无法保存！')
-    Button(wenjian2, text='保存', command=check).pack()
-    Button(wenjian2,text='编辑中文？打开源代码',command=open_file).pack()
-    wenjian2.mainloop()
-
-def python_run():
-    print('================================================')
-    print('|               open:my_script.py              |')
-    print('================================================')
-    os.system("python my_script.py")
-    print('>>> stop.')
 
 def closer():
     mixer.music.stop()
@@ -495,12 +397,8 @@ def looking2():
 def looking3():
     tkmessagebox.showinfo('版本记录1.0.6','新增一些小游戏\n可显示版本记录\n修改了一些计算器的代码，使其更完善')
 
-def looking4():
-    tkmessagebox.showinfo('版本记录2.1.0','保留了TkOS1.0的特色\n新增开始菜单\n对计算器进行优化\n游戏更加完善\n新增tkvision文本阅读器')
 def this():
-    tkmessagebox.showinfo('版本记录2.1.3','对文档编辑进行了更新，使其更人性化\n编辑文档增加可编辑Python文档并运行\n新增网络检测\n保留旧版')
-
-test2()
+    tkmessagebox.showinfo('版本记录2.1.0','保留了TkOS1.0的特色\n新增开始菜单\n对计算器进行优化\n游戏更加完善\n新增tkvision文本阅读器')
 
 mixer.init()
 mixer.music.load('MitsubishiModernDoorClose2.wav')
@@ -520,8 +418,6 @@ menubar = menu(root)
 filemenu = menu(menubar, tearoff=0)
 submenu = menu(filemenu)
 submenuw = menu(filemenu)
-submenu2 = menu(filemenu)
-submenu3 = menu(filemenu)
 
 root.config(menu=menubar)
 aa = menu(menubar, tearoff=0)
@@ -542,10 +438,6 @@ bb.add_cascade(label='文档编辑器', menu=submenu, underline=0)
 submenu.add_command(label='编辑文档', command=doc_file)
 submenu.add_command(label='查看文档', command=look_file)
 submenu.add_command(label='清空文档', command=kong_file)
-bb.add_cascade(label='Python编辑器', menu=submenu2, underline=0)
-submenu2.add_command(label='编辑文档', command=python_file)
-submenu2.add_command(label='运行', command=python_run)
-submenu2.add_command(label='pyshell', command=pyshell)
 bb.add_command(label='帮助', command=bang)
 root.config(menu=menubar)
 bb.add_separator()
@@ -579,9 +471,7 @@ cc.add_cascade(label='查看1.0版本', menu=submenuw, underline=0)
 submenuw.add_command(label='查看1.0.0更新', command=looking)
 submenuw.add_command(label='查看1.0.2更新', command=looking2)
 submenuw.add_command(label='查看1.0.6更新', command=looking3)
-cc.add_cascade(label='查看2.0版本', menu=submenu3, underline=0)
-submenu3.add_command(label='查看2.1.0更新', command=looking4)
-submenu3.add_command(label='查看2.1.3更新', command=this)
+cc.add_command(label='查看2.0版本', command=this)
 
 menubar.add_command(label='关于',command=about)
 
