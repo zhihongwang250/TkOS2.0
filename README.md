@@ -33,7 +33,7 @@ pip install pygame
 </pre>
 #### 2.1.5
 <pre>
-更新了一下文档编辑器
+更新了一下Python文档编辑器
 计算器升级
 </pre>
 #### 本版本附加事项：my_doc.txt是自定义编辑文件的文件
