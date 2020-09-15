@@ -1,4 +1,5 @@
 # -*coding:UTF-8*-
+from tkinter import*
 from tkinter import messagebox as tkmessagebox
 from tkinter import simpledialog
 from tkinter import Tk
@@ -6,6 +7,7 @@ from tkinter import Label as label
 from tkinter import Button as Button
 from tkinter import Menu as menu
 from tkinter import Canvas,HIDDEN,NORMAL,INSERT,END
+from tkinter import StringVar
 import tkinter.font as tkFont
 from tkinter import Text
 from pygame import mixer
@@ -56,7 +58,6 @@ def test2():
         print('已连接，您可以访问网络服务')
         fnull.close()
     print('python终端文件已就绪')
-    print('Python文件编辑不能有中文，如需要中文，请打开源代码文件')
     sleep(3)
     print('pyshell准备就绪......')
     sleep(6)
@@ -97,19 +98,6 @@ def hua():
         x2, y2 = (event.x + 1), (event.y + 1)
         w.create_oval(x1, y1, x2, y2, fill='red')
     w.bind('<B1-Motion>', paint)  #<B1-Motion>绑定鼠标左键事件
-
-def jisuanqi():
-    while True:
-        number = simpledialog.askstring('计算器','请输入数学表达式: ')
-        if not number:
-            return
-        try:
-            tkmessagebox.showinfo('计算结果是：',eval(number)) # 计算数字 eval
-            break
-        except Exception:
-            tkmessagebox.showerror('请注意！','表达式出现错误')
-        finally:
-            print('\n')
 
 def jisuan_help():
     jisuan_help_gui=Tk()
@@ -235,7 +223,7 @@ def python_file():
     wenjian2.title('tkvision python阅读器：编辑文档')
     text = Text(wenjian2,width=50, height=10)
     text.pack()
-    file=open('my_script.py')
+    file=open('python_file.py',encoding='UTF-8')
     s=file.read()
     text.insert(INSERT, s)
     contents = text.get('1.0', END)
@@ -497,8 +485,11 @@ def looking3():
 
 def looking4():
     tkmessagebox.showinfo('版本记录2.1.0','保留了TkOS1.0的特色\n新增开始菜单\n对计算器进行优化\n游戏更加完善\n新增tkvision文本阅读器')
-def this():
+def looking5():
     tkmessagebox.showinfo('版本记录2.1.3','对文档编辑进行了更新，使其更人性化\n编辑文档增加可编辑Python文档并运行\n新增网络检测\n保留旧版')
+
+def this():
+    tkmessagebox.showinfo('版本记录2.1.5','更新了一下python文档编辑器\n计算器升级')
 
 test2()
 
@@ -581,8 +572,8 @@ submenuw.add_command(label='查看1.0.2更新', command=looking2)
 submenuw.add_command(label='查看1.0.6更新', command=looking3)
 cc.add_cascade(label='查看2.0版本', menu=submenu3, underline=0)
 submenu3.add_command(label='查看2.1.0更新', command=looking4)
-submenu3.add_command(label='查看2.1.3更新', command=this)
-
+submenu3.add_command(label='查看2.1.3更新', command=looking5)
+submenu3.add_command(label='查看2.1.5更新',command=this)
 menubar.add_command(label='关于',command=about)
 
 b1=Button(root,text='打开项目的github界面',command=github)
